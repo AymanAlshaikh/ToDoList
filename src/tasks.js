@@ -1,4 +1,4 @@
-const data = [
+const tasks = [
   {
     id: 1,
     name: "Bootcamp",
@@ -23,5 +23,13 @@ const data = [
     date: "14-02-2020",
     priority: "MEDIUM",
   },
+  {
+    id: 4,
+    name: "Bootcamp4",
+    description: "coding",
+    status: true,
+    date: "14-02-2020",
+    priority: "MEDIUM",
+  },
 ];
-export default data;
+export default tasks;

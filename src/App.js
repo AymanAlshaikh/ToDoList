@@ -1,4 +1,4 @@
-import data from "./tasks";
+import tasks from "./tasks";
 
 import { Route, Switch } from "react-router";
 // Styling
@@ -24,7 +24,7 @@ function App() {
               <AddButton>Add Task</AddButton>
             </Link>
             <UnfinishedWrapper>
-              {data.length > 0 ? (
+              {tasks.length > 0 ? (
                 <UnfinishedTasks />
               ) : (
                 <h1>No Tasks To Show</h1>

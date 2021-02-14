@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import DeleteButton from "./buttons/DeleteButton";
@@ -5,7 +6,7 @@ import UpdateButton from "./buttons/UpdateButton";
 
 const TaskItems = (props) => {
   const task = props.task;
-
+  const [done, setDone] = useState(task.status);
   return (
     <div>
       <ul>

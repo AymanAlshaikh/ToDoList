@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import AddButton from "./buttons/AddButton";
 import DeleteButton from "./buttons/DeleteButton";
+import UpdateButton from "./buttons/UpdateButton";
 // import UnwatchedButton from "./buttons/UnwatchedButton";
 
 const FinishedTasks = () => {
@@ -18,6 +19,7 @@ const FinishedTasks = () => {
         <div>
           {/* <UnwatchedButton task={task}>Unwatched</UnwatchedButton> */}
           <DeleteButton taskId={task.id}>Delete</DeleteButton>
+          <UpdateButton task={task}>Undone</UpdateButton>
         </div>
       </div>
     ));

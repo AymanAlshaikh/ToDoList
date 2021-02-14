@@ -1,4 +1,4 @@
-import tasks from "../tasks";
+//import tasks from "../tasks";
 import slugify from "slugify";
 
 import {
@@ -9,7 +9,7 @@ import {
 } from "../store/actions";
 
 const initialState = {
-  tasks: tasks,
+  tasks: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,12 +21,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case ADD_TASK:
-      const { newtask } = action.payload;
-      newtask.slug = slugify(newtask.name, { lower: true });
-      newtask.id = state.tasks[state.tasks.length - 1].id + 1;
+      const { newTask } = action.payload;
+      //newtask.slug = slugify(newtask.name, { lower: true });
+      //newtask.id = state.tasks[state.tasks.length - 1].id + 1;
       return {
         ...state,
-        tasks: [...state.tasks, newtask],
+        tasks: [...state.tasks, newTask],
       };
 
     case UPDATE_TASK:
@@ -34,10 +34,11 @@ const reducer = (state = initialState, action) => {
       updatedtask.slug = slugify(updatedtask.name, { lower: true });
 
       return {
-        ...state,
+        /*...state,
         tasks: state.tasks.map((task) =>
           task.id === updatedtask.id ? updatedtask : task
-        ),
+        ),*/ ...state,
+        tasks: [...state.tasks],
       };
 
     case FETCH_TASK:

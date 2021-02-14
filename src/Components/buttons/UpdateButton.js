@@ -1,13 +1,20 @@
 import { UpdateButtonStyled } from "../../styles";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../store/actions";
+import { useState } from "react";
+const UpdateButton = (props) => {
+  const dispatch = useDispatch();
 
-const UpdateButton = ({ taskSlug }) => {
   return (
-    <div>
-      <Link to={`/products/${taskSlug}/edit`}>
-        <UpdateButtonStyled>Edit</UpdateButtonStyled>
-      </Link>
-    </div>
+    <UpdateButtonStyled
+      onClick={() => {
+        props.task.status = true;
+        dispatch(updateTask(props.task.status));
+      }}
+    >
+      done
+    </UpdateButtonStyled>
   );
 };
 

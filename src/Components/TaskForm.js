@@ -20,8 +20,8 @@ const TaskForm = () => {
       ? foundTask
       : {
           name: "",
-          description: "",
-          status: "",
+          //description: "",
+          status: false,
           date: "",
           priority: "",
         }
@@ -33,8 +33,8 @@ const TaskForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (foundTask) dispatch(updateTask(task));
-    else dispatch(addTask(task));
+    if (foundTask) dispatch(addTask(task));
+    else dispatch(updateTask(task));
     restForm();
     history.push("/tasks");
   };
@@ -42,8 +42,8 @@ const TaskForm = () => {
   const restForm = () => {
     setTask({
       name: "",
-      description: "",
-      status: "",
+      //description: "",
+      status: false,
       date: "",
       priority: "",
     });
@@ -62,19 +62,11 @@ const TaskForm = () => {
             onChange={handleChnage}
           />
         </label>
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            value={task.description}
-            onChange={handleChnage}
-          />
-        </label>
+
         <label>
           status:
           <input
-            type="text"
+            type="string"
             name="status"
             value={task.status}
             onChange={handleChnage}

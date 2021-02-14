@@ -1,12 +1,14 @@
 import tasks from "../tasks";
 import TaskItems from "./TaskItems";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { updateTask } from "../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 import DeleteButton from "./buttons/DeleteButton";
-
+import UpdateButton from "./buttons/UpdateButton";
 // import UnwatchedButton from "./buttons/UnwatchedButton";
 
 const UnfinishedTasks = () => {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks);
   const unfinishedTasks = tasks
     .filter((task) => task.status === false)
@@ -18,6 +20,16 @@ const UnfinishedTasks = () => {
         <div>
           {/* <UnwatchedButton task={task}>Unwatched</UnwatchedButton> */}
           <DeleteButton taskId={task.id}>Delete</DeleteButton>
+          {/* <UpdateButton task={task}>done</UpdateButton> */}
+          <button
+            type="button"
+            onClick={() => {
+              task.status = true;
+              dispatch(updateTask(task.status));
+            }}
+          >
+            DONE
+          </button>
         </div>
       </div>
     ));

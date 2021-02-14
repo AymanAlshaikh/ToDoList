@@ -8,14 +8,35 @@ import UpdateButton from "./buttons/UpdateButton";
 // import UnwatchedButton from "./buttons/UnwatchedButton";
 
 const UnfinishedTasks = () => {
+  const date2 = "2020-03-31";
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks);
+  const [priority, setPriority] = useState("low");
+  const handlePriority = () => {
+    if (priority === "HIGH") {
+      tasks.priority = "medium";
+      setPriority(tasks.priority);
+
+      console.log(tasks.priority);
+    } else if (priority === "medium") setPriority("high");
+    else setPriority("low");
+  };
+  console.log(priority);
   const unfinishedTasks = tasks
     .filter((task) => task.status === false)
     .map((task) => (
       <div>
         <div task={task} key={task.id}>
-          <p>{task.name}</p>
+          <ul>
+            <li>Name: {task.name}</li>
+            <li>Deadline: {("14 -02-2020", task.date)}</li>
+            <button on onClick={handlePriority}>
+              Priority: {task.priority}
+            </button>
+            <li>{Math.abs(task.date)}</li>
+
+            <li>Status: {task.status ? "done" : "not done"}</li>
+          </ul>
         </div>
         <div>
           {/* <UnwatchedButton task={task}>Unwatched</UnwatchedButton> */}
@@ -24,7 +45,9 @@ const UnfinishedTasks = () => {
           <button
             type="button"
             onClick={() => {
+              console.log(task.status);
               task.status = true;
+              console.log(task.status);
               dispatch(updateTask(task.status));
             }}
           >
@@ -33,6 +56,11 @@ const UnfinishedTasks = () => {
         </div>
       </div>
     ));
+
+  // const getDifferenceInDays({task.date}, date2)=> {
+  //   const diffInMs = Math.abs(date2 - date1);
+  //   return diffInMs / (1000 * 60 * 60 * 24);
+  // }
   return (
     <div>
       <h2>{`Unfinshed Tasks -- ${unfinishedTasks.length}`} </h2>

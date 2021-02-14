@@ -75,7 +75,7 @@ const TaskForm = () => {
         <label>
           date:
           <input
-            type="text"
+            type="date"
             name="date"
             alt=""
             value={task.date}

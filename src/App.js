@@ -11,6 +11,7 @@ import UnfinishedTasks from "./Components/UnfinishedTasks";
 import FinishedTasks from "./Components/FinishedTasks";
 
 function App() {
+  //console.log(Date.getDate());
   return (
     <div>
       <GlobalStyle />

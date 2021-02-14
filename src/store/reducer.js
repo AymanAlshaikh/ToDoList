@@ -30,15 +30,16 @@ const reducer = (state = initialState, action) => {
       };
 
     case UPDATE_TASK:
-      const { updatedtask } = action.payload;
-      updatedtask.slug = slugify(updatedtask.name, { lower: true });
+      const { updatedTask } = action.payload;
+      updatedTask.slug = slugify(updatedTask.name, { lower: true });
 
       return {
-        /*...state,
+        ...state,
         tasks: state.tasks.map((task) =>
-          task.id === updatedtask.id ? updatedtask : task
-        ),*/ ...state,
-        tasks: [...state.tasks],
+          task.id === updatedTask.id ? updatedTask : task
+        ),
+        // ...state,
+        // tasks: [...state.tasks],
       };
 
     case FETCH_TASK:

@@ -3,18 +3,26 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateTask } from "../../store/actions";
 import { useState } from "react";
-const UpdateButton = (props) => {
+const UpdateButton = ({ status }) => {
   const dispatch = useDispatch();
-
+  const updateFunc = () => {
+    status = true;
+    dispatch(updateTask(status));
+  };
+  // status = true;
+  // dispatch(updateTask(status));
   return (
-    <UpdateButtonStyled
-      onClick={() => {
-        props.task.status = true;
-        dispatch(updateTask(props.task.status));
-      }}
-    >
-      done
-    </UpdateButtonStyled>
+    <div>
+      {/* <UpdateButtonStyled
+        onClick={() => {
+          status = true;
+          dispatch(updateTask(status));
+        }}
+      >
+        Done
+      </UpdateButtonStyled> */}
+      <UpdateButtonStyled onClick={updateFunc}>Done</UpdateButtonStyled>
+    </div>
   );
 };
 

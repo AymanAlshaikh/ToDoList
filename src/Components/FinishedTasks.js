@@ -29,19 +29,19 @@ const FinishedTasks = () => {
           {/* <UnwatchedButton task={task}>Unwatched</UnwatchedButton> */}
           <DeleteButton taskId={task.id}>Delete</DeleteButton>
           {/* <UpdateButton task={task}>Undone</UpdateButton> */}
-          <Link to={`/tasks/${task.name}/edit`}>
-            <button
-              type="button"
-              onClick={() => {
-                console.log(task.status);
-                task.status = false;
-                console.log(task.status);
-                dispatch(updateTask(task.status));
-              }}
-            >
-              DONE
-            </button>
-          </Link>
+          {/* <Link to={`/tasks/${task.name}/edit`}> */}
+          <button
+            type="button"
+            onClick={() => {
+              console.log(task.status);
+              task.status = false;
+              console.log(task.status);
+              dispatch(updateTask(task.status));
+            }}
+          >
+            DONE
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     ));

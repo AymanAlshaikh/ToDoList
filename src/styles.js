@@ -50,20 +50,30 @@ export const AddButtonStyled = styled.button`
 
 export const UpdateButtonStyled = styled.button`
   display: inline-block;
-  padding: 0.75rem 1rem;
-  margin-left: 10px;
-  border-radius: 1rem;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
   color: #fff;
-  background-color: #8f0048;
+  background-color: #00aff1;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  // float: right;
 `;
 
 export const SubmitButtonStyled = styled.button`
-  display: inline-block;
-  padding: 0.75rem 1rem;
-  margin-left: 10px;
-  border-radius: 1rem;
-  color: #000;
-  background-color: #00aff1;
+display: inline-block;
+border: none;
+padding: 10px 20px;
+margin: 5px;
+border-radius: 5px;
+color: #fff;
+  background-color: #0077a5;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  // float: right;
 `;
 
 export const DeleteButtonStyled = styled.button`

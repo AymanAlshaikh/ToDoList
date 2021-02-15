@@ -1,58 +1,51 @@
+// import {
+//   SubmitButtonStyled,
+//   UpdateButtonStyled,
+//   AddButtonStyled,
+// } from "../styles";
 import { useState } from "react";
-import { SubmitButtonStyled, UpdateButtonStyled } from "../styles";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, updateTask } from "../store/actions";
 import { useHistory, useParams } from "react-router-dom";
+import AddButton from "./buttons/AddButton";
+import SubmitButton from "./buttons/SubmitButton"
 
 const TaskForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const dispatch = useDispatch();
-
-  const { taskSlug } = useParams();
-
-  const foundTask = useSelector((state) =>
-    state.tasks.find((task) => task.slug === taskSlug)
-  );
-
-  const [task, setTask] = useState(
-    foundTask
-      ? foundTask
-      : {
-          name: "",
-          //description: "",
-          status: false,
-          date: "",
-          priority: "",
-        }
-  );
+  const [task, setTask] = useState({
+    name: "",
+    status: false,
+    date: "",
+    priority: "",
+  });
 
   const handleChnage = (event) => {
     setTask({ ...task, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (foundTask) dispatch(addTask(task));
-    else dispatch(updateTask(task));
-    restForm();
-    history.push("/tasks");
-  };
-
   const restForm = () => {
     setTask({
       name: "",
-      //description: "",
       status: false,
       date: "",
       priority: "",
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(addTask(task));
+    restForm();
+    history.push("/");
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>{foundTask ? "Update" : "Create"} Task</h1>
+        <h1>Add Task</h1>
+        {/* <h1>{foundTask ? "Create" : "Update"} Task</h1> */}
         <label>
           Name:
           <input
@@ -62,9 +55,26 @@ const TaskForm = () => {
             onChange={handleChnage}
           />
         </label>
+        <label>
+          Priority:
+          <select
+            name="priority"
+            // onChange={handleChnage}
+          >
+            <option name="low" value={task.priority}>
+              Low
+            </option>
+            <option name="medium" value={task.priority}>
+              Medium
+            </option>
+            <option name="high" value={task.priority}>
+              High
+            </option>
+          </select>
+        </label>
 
         <label>
-          status:
+          Status:
           <input
             type="string"
             name="status"
@@ -72,33 +82,25 @@ const TaskForm = () => {
             onChange={handleChnage}
           />
         </label>
+
         <label>
-          date:
+          Date:
           <input
             type="date"
             name="date"
-            alt=""
             value={task.date}
+            // min="2021-02-14 "
             onChange={handleChnage}
           />
         </label>
-        <label>
-          priority:
-          <input
-            type="text"
-            name="priority"
-            alt=""
-            value={task.priority}
-            onChange={handleChnage}
-          />
-        </label>
-        {/* <SubmitButtonStyled type="submit" value="Submit">
-          Submit
-        </SubmitButtonStyled> */}
 
-        <UpdateButtonStyled type="submit">
-          {foundTask ? "Update" : "Create"} Task
-        </UpdateButtonStyled>
+        <SubmitButton type="submit" value="Submit">
+          Submit
+        </SubmitButton>
+        {/* <AddButton type="submit"></AddButton> */}
+        {/* <UpdateButtonStyled type="submit">
+          {foundTask ? "Create" : "Update"} Task
+        </UpdateButtonStyled> */}
       </form>
     </div>
   );

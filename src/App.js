@@ -16,10 +16,10 @@ function App() {
     <div>
       <GlobalStyle />
       <Switch>
-        <Route path={["/tasks/create", "/tasks/:taskSlug/edit"]}>
+        <Route path={"/tasks/create"}>
           <TaskForm />
         </Route>
-        <Route path="/tasks">
+        <Route path="/">
           <>
             <Link to="/tasks/create">
               <AddButton>Add Task</AddButton>
@@ -35,9 +35,6 @@ function App() {
               <FinishedTasks />
             </FinishedTasksWrapper>
           </>
-        </Route>
-        <Route exact path="/">
-          <Home />
         </Route>
       </Switch>
     </div>

@@ -1,6 +1,4 @@
-//import tasks from "../tasks";
-import slugify from "slugify";
-
+import tasks from "../tasks";
 import {
   DELETE_TASK,
   ADD_TASK,
@@ -14,16 +12,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case DELETE_TASK:
+    case FETCH_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload.taskId),
+        tasks: action.payload,
       };
 
     case ADD_TASK:
       const { newTask } = action.payload;
-      //newtask.slug = slugify(newtask.name, { lower: true });
-      //newtask.id = state.tasks[state.tasks.length - 1].id + 1;
+
       return {
         ...state,
         tasks: [...state.tasks, newTask],
@@ -31,23 +28,23 @@ const reducer = (state = initialState, action) => {
 
     case UPDATE_TASK:
       const { updatedTask } = action.payload;
-      updatedTask.slug = slugify(updatedTask.name, { lower: true });
+      // updatedTask.status = !updatedTask.status;
 
       return {
         ...state,
         tasks: state.tasks.map((task) =>
           task.id === updatedTask.id ? updatedTask : task
         ),
-        // ...state,
-        // tasks: [...state.tasks],
       };
+    //   ...state,
+    //   tasks: [...state.tasks],
+    // };
 
-    case FETCH_TASK:
+    case DELETE_TASK:
       return {
         ...state,
-        tasks: action.payload.tasks,
+        tasks: state.tasks.filter((task) => task.id !== action.payload.taskId),
       };
-
     default:
       return state;
   }
